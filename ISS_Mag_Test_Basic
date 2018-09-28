@@ -1,0 +1,73 @@
+Class SurroundingClass
+    Private Mag1Pull As Integer = 8
+    Private Mag1Push As Integer = 9
+    Private Mag2Pull As Integer = 2
+    Private Mag2Push As Integer = 3
+    Private IRTimer As Integer = 0
+    Private IRState As Integer = 0
+    Private IRLast As Integer = 0
+    Private SendMag As Integer = 0
+    Private rng As Integer = 0
+
+    Private Sub setup()
+        pinMode(Mag1Pull, OUTPUT)
+        pinMode(Mag1Push, OUTPUT)
+        pinMode(Mag2Pull, OUTPUT)
+        pinMode(Mag2Push, OUTPUT)
+        Serial.begin(9600)
+    End Sub
+
+    Private Sub [loop]()
+        delay(250)
+        rng = random(0, 3)
+
+        If rng = 1 Then
+            digitalWrite(Mag1Pull, HIGH)
+            digitalWrite(Mag1Push, LOW)
+            Serial.println(rng)
+            SendMag = 5
+        End If
+
+        If rng = 2 Then
+            digitalWrite(Mag1Pull, LOW)
+            digitalWrite(Mag1Push, HIGH)
+            Serial.println(rng)
+            SendMag = 15
+        End If
+
+        If rng = 0 Then
+            digitalWrite(Mag1Pull, LOW)
+            digitalWrite(Mag1Push, LOW)
+            Serial.print(rng)
+            SendMag = 0
+        End If
+
+        Serial.println(SendMag)
+
+        If SendMag < 10 Then
+            digitalWrite(Mag2Push, HIGH)
+            digitalWrite(Mag2Pull, LOW)
+        End If
+
+        If SendMag > 10 Then
+            digitalWrite(Mag2Push, LOW)
+            digitalWrite(Mag2Pull, HIGH)
+        End If
+
+        If CSharpImpl.__Assign(SendMag, 0) Then
+        End If
+
+        If True Then
+            digitalWrite(Mag2Push, LOW)
+            digitalWrite(Mag2Push, LOW)
+        End If
+    End Sub
+
+    Private Class CSharpImpl
+        <Obsolete("Please refactor calling code to use normal Visual Basic assignment")>
+        Shared Function __Assign(Of T)(ByRef target As T, value As T) As T
+            target = value
+            Return value
+        End Function
+    End Class
+End Class
