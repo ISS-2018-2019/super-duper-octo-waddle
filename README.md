@@ -14,3 +14,4 @@ Notes:
 9/28
 random_int_biled_change and ISS_Mag_Test should be the same thing, I don't know why we have two copies of it but what ever
 File type files(hmmm) can be dragged into a text editor to be viewed/edited
+Recommend Notepad++ for editing files - https://notepad-plus-plus.org/download/v7.5.8.html
