@@ -1,73 +1,59 @@
-Class SurroundingClass
-    Private Mag1Pull As Integer = 8
-    Private Mag1Push As Integer = 9
-    Private Mag2Pull As Integer = 2
-    Private Mag2Push As Integer = 3
-    Private IRTimer As Integer = 0
-    Private IRState As Integer = 0
-    Private IRLast As Integer = 0
-    Private SendMag As Integer = 0
-    Private rng As Integer = 0
+' {$STAMP BS2}
+' {$PBASIC 2.5}
 
-    Private Sub setup()
-        pinMode(Mag1Pull, OUTPUT)
-        pinMode(Mag1Push, OUTPUT)
-        pinMode(Mag2Pull, OUTPUT)
-        pinMode(Mag2Push, OUTPUT)
-        Serial.begin(9600)
-    End Sub
+'setup
+value VAR Word  'seed for rng
+value = 652
+rng VAR Byte
+SendMag VAR Byte 'how mag1 will "talk" with mag2
 
-    Private Sub [loop]()
-        delay(250)
-        rng = random(0, 3)
 
-        If rng = 1 Then
-            digitalWrite(Mag1Pull, HIGH)
-            digitalWrite(Mag1Push, LOW)
-            Serial.println(rng)
-            SendMag = 5
-        End If
+DO
+PAUSE 100
 
-        If rng = 2 Then
-            digitalWrite(Mag1Pull, LOW)
-            digitalWrite(Mag1Push, HIGH)
-            Serial.println(rng)
-            SendMag = 15
-        End If
+'gets a pseudorandom number between 1 & 3 (add more for more randomness)
+RANDOM value                  'The way random works in basic is that it takes a given value(the seed) and
+RANDOM value                  'then turns it into a pseudorandom number and it'll end up repeating itself
+RANDOM value                  'then turns it into a pseudorandom number and it'll end up repeating itself
+RANDOM value                  'so to counteract that I've added a couple more randoms to make it more pseudorandom
+RANDOM value
+RANDOM value
+rng = value // 3 + 1           'there's no syntax to control random(that I know of) so we just use this instead
 
-        If rng = 0 Then
-            digitalWrite(Mag1Pull, LOW)
-            digitalWrite(Mag1Push, LOW)
-            Serial.print(rng)
-            SendMag = 0
-        End If
 
-        Serial.println(SendMag)
+'checks value and turns on/off and led or mag1 based on the number
+IF(rng = 1) THEN       'off
+    LOW 9
+    LOW 8
+    SendMag = 0
+ENDIF
 
-        If SendMag < 10 Then
-            digitalWrite(Mag2Push, HIGH)
-            digitalWrite(Mag2Pull, LOW)
-        End If
+IF(rng = 2) THEN       'green on
+    HIGH 9
+    LOW 8
+    SendMag = 5
+ENDIF
 
-        If SendMag > 10 Then
-            digitalWrite(Mag2Push, LOW)
-            digitalWrite(Mag2Pull, HIGH)
-        End If
+IF(rng = 3) THEN        'red on
+    LOW 9
+    HIGH 8
+    SendMag =15
+ENDIF
 
-        If CSharpImpl.__Assign(SendMag, 0) Then
-        End If
+'controls MAG2
+IF(SendMag = 0) THEN                   'off
+    LOW 3
+    LOW 2
+ENDIF
 
-        If True Then
-            digitalWrite(Mag2Push, LOW)
-            digitalWrite(Mag2Push, LOW)
-        End If
-    End Sub
+IF(SendMag > 0) AND (SendMag <10)THEN  'green
+    HIGH 3
+    LOW 2
+ENDIF
 
-    Private Class CSharpImpl
-        <Obsolete("Please refactor calling code to use normal Visual Basic assignment")>
-        Shared Function __Assign(Of T)(ByRef target As T, value As T) As T
-            target = value
-            Return value
-        End Function
-    End Class
-End Class
+IF(SENDMag >10)THEN                    'red
+    LOW 3
+    HIGH 2
+ENDIF
+
+LOOP
