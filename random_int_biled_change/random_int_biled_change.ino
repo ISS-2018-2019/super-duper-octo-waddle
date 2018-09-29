@@ -53,7 +53,7 @@ void loop(){
    //controls magnet 2(Reactive actions)
 
 
-   if (SendMag < 10){
+   if (SendMag > 0 && SendMag < 10){
        digitalWrite(Mag2Push,HIGH);  //runs if signal lasted less than 10 ms but more than 0
        digitalWrite(Mag2Pull,LOW);   // in test environment it'll just follow rng
        SendMag = 0;
@@ -68,7 +68,7 @@ void loop(){
     digitalWirte(Mag2PUSH,LOW)
     digitalWrite(Mag2Pull,LOW)
   }
-  
+
    }
    }
   }
