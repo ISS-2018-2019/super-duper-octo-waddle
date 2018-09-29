@@ -22,44 +22,43 @@ Serial.begin(9600);
 }
 
 void loop(){
+  delay(100);
    //controls magnet 1(random actions)
    rng = random(0,3);
 
-   if(rng == 1){
+   if(rng == 1){  //green on
        digitalWrite(Mag1Pull,HIGH);
        digitalWrite(Mag1Push,LOW);
-       IRTimer = 5;                  //need to find a better way to time it
+       SendMag = 5;
        Serial.print(rng);
-       delay(50);
-       rng = random(0,2);
 
    }
 
-   if(rng == 2){
+   if(rng == 2){  //red on
        digitalWrite(Mag1Pull,LOW);
        digitalWrite(Mag1Push,HIGH);
-       IRTimer = 15;
+       SendMag = 15;
        Serial.print(rng);
-       delay(50);
-       rng = random(0,2);
    }
 
-   if(rng == 0){
-       digitalWrite(Mag1Pull,LOW);
-       digitalWrite(Mag1Push,LOW);
-          Serial.print(rng);
-       rng = random(0,2);
+   if(rng == 0){  //off
+      digitalWrite(Mag1Pull,LOW);
+      digitalWrite(Mag1Push,LOW);
+      SendMag = 0;
+      Serial.print(rng);
+
    }
 
 
    //controls magnet 2(Reactive actions)
-   IRTimer = SendMag; //really simplified version of this
+
 
    if (SendMag > 0 && SendMag < 10){
        digitalWrite(Mag2Push,HIGH);  //runs if signal lasted less than 10 ms but more than 0
-       digitalWrite(Mag2Pull,LOW);
+       digitalWrite(Mag2Pull,LOW);   // in test environment it'll just follow rng
        SendMag = 0;
    }
+
    if (SendMag > 10){
        digitalWrite(Mag2Push,LOW);   //runs if signal lasted longer than 10 ms
        digitalWrite(Mag2Push,HIGH);
