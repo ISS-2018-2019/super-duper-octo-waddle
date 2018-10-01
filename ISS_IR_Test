@@ -1,0 +1,36 @@
+
+const int IRtrans = 12;
+const int IRrec = 13;
+
+int IRtimer = 0;
+int SendMag = 0;
+
+void setup() {
+   pinMode(IRtrans,OUTPUT);
+   Serial.begin(9600);
+}
+
+void loop() {
+  //IR communications
+  delay(500);
+  SendMag = random(0,3);
+  //sending a signal
+  if(SendMag = 0){
+      digitalWrite(IRtrans,LOW);
+  }
+  if(SendMag = 1){
+      digitalWrite(IRtrans,HIGH);
+      delay(100);
+      digitalWrite(IRtrans,LOW);
+  }
+  if(SendMag = 2){
+      digitalWrite(IRtrans,HIGH);
+      delay(200);
+      digitalWrite(IRtrans,LOW);
+  }
+
+  //Recieving+Translating
+   IRtimer = digitalRead(IRrec);
+   Serial.println(IRtimer);
+
+}
