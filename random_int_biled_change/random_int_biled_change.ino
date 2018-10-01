@@ -54,21 +54,19 @@ void loop(){
 
 
    if (SendMag > 0 && SendMag < 10){
-       digitalWrite(Mag2Push,HIGH);  //runs if signal lasted less than 10 ms but more than 0
-       digitalWrite(Mag2Pull,LOW);   // in test environment it'll just follow rng
+       digitalWrite(Mag2Push,LOW);  //runs if signal lasted less than 10 ms but more than 0
+       digitalWrite(Mag2Pull,HIGH);   // in test environment it'll just follow rng
        SendMag = 0;
    }
 
    if (SendMag > 10){
-       digitalWrite(Mag2Push,LOW);   //runs if signal lasted longer than 10 ms
-       digitalWrite(Mag2Pull,HIGH);
+       digitalWrite(Mag2Push,HIGH);   //runs if signal lasted longer than 10 ms
+       digitalWrite(Mag2Pull,LOW);
        SendMag = 0;
-
+   }
   if (SendMag = 0){
-    digitalWirte(Mag2PUSH,LOW)
-    digitalWrite(Mag2Pull,LOW)
+    digitalWrite(Mag2Push,LOW);
+    digitalWrite(Mag2Pull,LOW);
   }
 
    }
-   }
-  }
