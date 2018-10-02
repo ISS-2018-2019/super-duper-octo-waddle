@@ -1,9 +1,12 @@
 
-int Mag1Pull = 8; //random actions
-int Mag1Push = 9;
+const int Mag1Pull = 8; //random actions
+const int Mag1Push = 9;
 
-int Mag2Pull = 2; //reacts to Mag1
-int Mag2Push = 3;
+const int Mag2Pull = 2; //reacts to Mag1
+const int Mag2Push = 3;
+
+const int IRtrans = 12;
+const int IRrec = 13;
 
 
 int IRTimer = 0;    //variables
@@ -18,6 +21,8 @@ pinMode (Mag1Pull,OUTPUT);
 pinMode (Mag1Push,OUTPUT);
 pinMode (Mag2Pull,OUTPUT);
 pinMode (Mag2Push,OUTPUT);
+pinMode (IRrec,OUTPUT);
+pinMode (IRtrans,INPUT);
 Serial.begin(9600);
 }
 
@@ -89,8 +94,5 @@ void loop(){
   if (SendMag = 0){
     digitalWrite(Mag2Push,LOW);
     digitalWrite(Mag2Pull,LOW);
-  }
-
-   }
-
-  
+}
+}
