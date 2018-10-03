@@ -78,6 +78,11 @@ void loop(){
   //Recieving+Translating
    IRtimer = digitalRead(IRrec);
    Serial.println(IRtimer);
+/*
+   while(IRtimer = 0){
+     digitalWrite(Mag2Pull,LOW);
+     digitalWrite(Mag2Push,LOW);
+   }
 
   //reaction
    if (SendMag > 0 && SendMag < 10){
@@ -94,5 +99,6 @@ void loop(){
   if (SendMag = 0){
     digitalWrite(Mag2Push,LOW);
     digitalWrite(Mag2Pull,LOW);
-}
+  }
+  */
 }

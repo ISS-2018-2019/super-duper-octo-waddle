@@ -19,3 +19,10 @@ Recommend Notepad++ for editing files - https://notepad-plus-plus.org/download/v
 10/1
 -Added IR and Full Test; IR tests ir circuit & full tests a unified ir and mag test circuits
 -Removed ISS_Mag_Test -> was the same as random_int_biled_change and I didn't want to maintain two copies of the same
+10/3
+-Added TinkerCad circuit(google thinker cad)
+-Added IR Trans; Real world ir transmitting test, just turns a led off and on
+-Full Test might be scraped
+-two controllers will be need, one for ir transmitter and one for receiving
+-Added ISS_IR_Rec folder containing arduino program that prints data coming from ir reciever
+-Added relative xkcd
